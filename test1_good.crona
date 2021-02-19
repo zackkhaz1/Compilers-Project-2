@@ -3,4 +3,4 @@ c : bool;
 a : void;
 a : byte;
 a : string;
-
+fn : void(x : int) {}

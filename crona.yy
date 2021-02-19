@@ -64,6 +64,9 @@ project)
 %union {
    crona::Token*                         lexeme;
    crona::Token*                         transToken;
+   crona::IDToken*			 transIDToken;
+   crona::StrToken*			 transStrToken;
+   crona::IntLitToken*			 transIntToken;
 }
 
 %token                   END	   0 "end file"
@@ -114,6 +117,13 @@ project)
 /* NOTE: Make sure to add precedence and associativity
  * declarations
 */
+%right		ASSIGN
+%left		OR
+%left		AND
+%nonassoc	LESS LESSEQ NOTEQUALS GREATER GREATEREQ EQUALS
+%left		CROSS DASH
+%left		STAR SLASH
+%left		NOT
 
 %%
 
@@ -208,7 +218,7 @@ fnBody 		: LCURLY stmtList RCURLY
 stmtList 	: stmtList stmt
 		  {
 		  }
-		|
+		| /* epsilon */
 		  {
 		  }
 
@@ -332,6 +342,20 @@ term 		: lval
 		  {
 		  }
 		| TRUE
+		  {
+		  }
+		| FALSE
+		  {
+		  }
+		| HAVOC
+		  {
+		  }
+		| LPAREN exp RPAREN
+		  {
+		  }
+		| fncall
+		  {
+		  }
 
 
 lval  		: ID
@@ -340,7 +364,7 @@ lval  		: ID
 		| id LBRACE exp RBRACE
 		  {
 		  }
-			 
+
 
 id		: ID
 		  {

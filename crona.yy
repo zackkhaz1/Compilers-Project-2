@@ -82,7 +82,7 @@ project)
 %token	<transToken>     EQUALS
 %token	<transToken>     FALSE
 %token	<transToken>     READ
-%token	<transToken>   HAVOC
+%token	<transToken>	 HAVOC
 %token	<transIDToken>   ID
 %token	<transToken>     IF
 %token	<transToken>     INT
@@ -126,6 +126,7 @@ program 	: globals
 		  {
 		  }
 
+
 globals 	: globals decl
 	  	  {
 	  	  }
@@ -133,14 +134,14 @@ globals 	: globals decl
 		  {
 		  }
 
-			decl 		: varDecl SEMICOLON
-					  {
 
-			       }
-			         | fnDecl
-			         {
+decl 		: varDecl SEMICOLON
+		  {
+		  }
+		| fnDecl
+		  {
+		  }
 
-			         }
 
 varDecl 	: id COLON type
 		  {
@@ -148,229 +149,202 @@ varDecl 	: id COLON type
 
 
 type 		: INT
-	  	  {
-
-		    }
-				|  INT ARRAY LBRACE INTLITERAL RBRACE
-	  	  {
-
-		    }
-				| BOOL
-				{
-
-				}
-				| BOOL ARRAY LBRACE INTLITERAL RBRACE
-				{
-
-				}
-				| VOID
-				{
-
-				}
-				| BYTE
-				{
-
-				}
-				| BYTE ARRAY LBRACE INTLITERAL RBRACE
-				{
-
-				}
-				| STRING
-				{
-
-				}
-
-fnDecl  : id COLON type formals fnBody
-				{
-
-				}
-
-formals : LPAREN RPAREN
-				{
-
-				}
-				| LPAREN formalsList RPAREN
-				{
-
-				}
-
-formalsList : formalDecl
-				{
-
-				}
-				| formalDecl COMMA formalsList
-				{
-
-				}
-
-formalDecl : id COLON type
-					{
-
-					}
-
-fnBody : LCURLY stmtList RCURLY
-			 {
-
-			 }
-stmtList : stmtList stmt
-			 		{
-
-			 		}
-					|
-					{
-
-					}
- stmt    : varDecl SEMICOLON
-			 				{
-
-			 				}
-			 				| assignExp SEMICOLON
-			 				{
-			 				}
-			 				| lval DASHDASH SEMICOLON
-			 				{
-			 				}
-			 				| lval CROSSCROSS SEMICOLON
-			 				{
-			 				}
-			 				| READ lval SEMICOLON
-			 				{
-			 				}
-			 				| WRITE exp SEMICOLON
-			 				{
-			 				}
-			 				| IF LPAREN exp RPAREN LCURLY stmtList RCURLY
-			 				{
-			 				}
-			 				| IF LPAREN exp RPAREN LCURLY stmtList RCURLY ELSE LCURLY stmtList RCURLY
-			 				{
-			 				}
-			 				| WHILE LPAREN exp RPAREN LCURLY stmtList RCURLY
-			 				{
-			 				}
-			 				| RETURN exp SEMICOLON
-			 				{
-			 				}
-			 				| RETURN SEMICOLON
-			 				{
-			 				}
-			 				| fncall SEMICOLON
-			 				{
-			 				}
-			 assignExp : lval ASSIGN exp
-			 					{
-
-			 					}
-
-			 fncall   	: id LPAREN RPAREN
-			 					{
-
-			 					}
-			 				  | id LPAREN actualsList RPAREN
-			 					{
-
-			 					}
-
-			 actualsList : exp
-			 						{
-
-			 						}
-			 				    | actualsList COMMA exp
-			 						{
-
-			 						}
-
-			 exp        : assignExp
-			 						{
-			 						}
-
-			 						| exp DASH exp
-			 						{
-			 						}
-
-			 						| exp CROSS exp
-			 						{
-			 						}
-
-			 						| exp STAR exp
-			 						{
-			 						}
-
-			 						| exp SLASH exp
-			 						{
-			 						}
-
-			 						| exp AND exp
-			 					 {
-			 					 }
-
-			 						| exp OR exp
-			 					 {
-			 					 }
-
-			 						| exp EQUALS exp
-			 					 {
-			 					 }
-
-			 						| exp NOTEQUALS exp
-			 					 {
-			 					 }
-
-			 						| exp GREATER exp
-			 					 {
-			 					 }
-
-			 						| exp GREATEREQ exp
-			 					 {
-			 					 }
-
-			 						| exp LESS exp
-			 					 {
-			 					 }
-
-			 						| exp LESSEQ exp
-			 					 {
-			 					 }
-
-			 						| NOT exp
-			 					 {
-			 					 }
-
-			 						| DASH term
-			 					 {
-			 					 }
-
-			 					 | term
-			 					 {
-			 					 }
-
-term : lval
-			{
-
-			}
-			| INTLITERAL
-			{
-
-			}
-			| STRLITERAL
-			{
-
-			}
-			| TRUE
+		  {
+		  }
+		|  INT ARRAY LBRACE INTLITERAL RBRACE
+		  {
+		  }
+		| BOOL
+		  {
+		  }
+		| BOOL ARRAY LBRACE INTLITERAL RBRACE
+		  {
+		  }
+		| VOID
+		  {
+		  }
+		| BYTE
+		  {
+		  }
+		| BYTE ARRAY LBRACE INTLITERAL RBRACE
+		  {
+		  }
+		| STRING
+		  {
+		  }
 
 
-			 lval  : ID
-			 			{
+fnDecl		: id COLON type formals fnBody
+		  {
+		  }
 
-			 			}
-			 			| id LBRACE exp RBRACE
-			 			{
 
-			 			}
-			 id		: ID
-			 			{
+formals 	: LPAREN RPAREN
+		  {
+		  }
+		| LPAREN formalsList RPAREN
+		  {
+		  }
 
-			 			 }
+
+formalsList 	: formalDecl
+		  {
+		  }
+		| formalDecl COMMA formalsList
+		  {
+		  }
+
+
+formalDecl 	: id COLON type
+		  {
+		  }
+
+
+fnBody 		: LCURLY stmtList RCURLY
+		  {
+		  }
+
+
+stmtList 	: stmtList stmt
+		  {
+		  }
+		|
+		  {
+		  }
+
+
+ stmt    	: varDecl SEMICOLON
+		  {
+		  }
+		| assignExp SEMICOLON
+		  {
+		  }
+		| lval DASHDASH SEMICOLON
+		  {
+		  }
+		| lval CROSSCROSS SEMICOLON
+		  {
+		  }
+		| READ lval SEMICOLON
+		  {
+		  }
+		| WRITE exp SEMICOLON
+		  {
+		  }
+		| IF LPAREN exp RPAREN LCURLY stmtList RCURLY
+		  {
+		  }
+		| IF LPAREN exp RPAREN LCURLY stmtList RCURLY ELSE LCURLY stmtList RCURLY
+		  {
+		  }
+		| WHILE LPAREN exp RPAREN LCURLY stmtList RCURLY
+		  {
+		  }
+		| RETURN exp SEMICOLON
+		  {
+		  }
+		| RETURN SEMICOLON
+		  {
+		  }
+		| fncall SEMICOLON
+		  {
+		  }
+
+
+assignExp 	: lval ASSIGN exp
+		  {
+		  }
+
+
+fncall   	: id LPAREN RPAREN
+		  {
+		  }
+		| id LPAREN actualsList RPAREN
+		  {
+		  }
+
+
+actualsList 	: exp
+		  {
+		  }
+		| actualsList COMMA exp
+		  {
+		  }
+
+
+exp 		: assignExp
+		  {
+		  }
+		| exp DASH exp
+		  {
+		  }
+		| exp CROSS exp
+		  {
+		  }
+		| exp STAR exp
+		  {
+		  }
+		| exp SLASH exp
+		  {
+		  }
+		| exp AND exp
+		  {
+		  }
+		| exp OR exp
+		  {
+		  }
+		| exp EQUALS exp
+		  {
+		  }
+		| exp NOTEQUALS exp
+		  {
+		  }
+		| exp GREATER exp
+		  {
+		  }
+		| exp GREATEREQ exp
+		  {
+		  }
+		| exp LESS exp
+		  {
+		  }
+		| exp LESSEQ exp
+		  {
+		  }
+		| NOT exp
+		  {
+		  }
+		| DASH term
+		  {
+		  }
+		| term
+		  {
+		  }
+
+
+term 		: lval
+		  {
+		  }
+		| INTLITERAL
+		  {
+		  }
+		| STRLITERAL
+		  {
+		  }
+		| TRUE
+
+
+lval  		: ID
+		  {
+		  }
+		| id LBRACE exp RBRACE
+		  {
+		  }
+			 
+
+id		: ID
+		  {
+		  }
 
 
 %%

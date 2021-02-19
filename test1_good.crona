@@ -1,1 +1,6 @@
 a : int;
+c : bool;
+a : void;
+a : byte;
+a : string;
+
